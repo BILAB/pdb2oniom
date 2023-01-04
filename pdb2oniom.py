@@ -43,7 +43,7 @@ def parse_resid(resid) -> List[Tuple[str, int]]:
             if line == "":
                 continue
             # syntax check for resid file
-            resn_resi = re.match(r'^\[([A-Z]+)\]\s"([0-9]+)"', line)
+            resn_resi = re.match(r'^\[(.+)\]\s"([0-9]+)"', line)
             if not resn_resi:
                 raise RuntimeError(
                     f"The syntax of '{line}' in {resid} file is not valid."
