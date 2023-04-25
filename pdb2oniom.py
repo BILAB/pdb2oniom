@@ -244,7 +244,7 @@ def get_unique_list(seq):
     return non_dep_dihedlist
 
 
-def writetorsionsection(parm):
+def writetorsionsection(parm, improper):
     """Write dihedral sections: AmbTrs and ImpTrs
     dihed_list = [[('LC', 'LC', 'LN', 'LHN'), (180, '1.1000'), 2, True/False], [...], ]
     dihedrals.improper==False -> AmbTrs, True -> ImpTrs
@@ -300,8 +300,9 @@ def writetorsionsection(parm):
             f"{i[2][0]}  {i[2][1]}  {i[2][2]}  {i[2][3]}   1.0\n"
         )
 
-    for i in improperinfo:
-        torsioninfo += f"ImpTrs  {i[0][0]:>3} {i[0][1]:>3} {i[0][2]:>3} {i[0][3]:>3}   {i[1]:>8}   {i[2]:.01f}   {i[3]:.01f}\n"
+    if improper:
+        for i in improperinfo:
+            torsioninfo += f"ImpTrs  {i[0][0]:>3} {i[0][1]:>3} {i[0][2]:>3} {i[0][3]:>3}   {i[1]:>8}   {i[2]:.01f}   {i[3]:.01f}\n"
     return torsioninfo
 
 
@@ -333,6 +334,7 @@ def writegjffile(
     resid: str,
     near: float = 999.0,
     outputfile: str = "oniominput1.gjf",
+    improper: bool = False,
     mem: str = "60GB",
     nproc: int = 16,
 ) -> None:
@@ -354,7 +356,7 @@ def writegjffile(
     desc += writebondinfo(parm)
     desc += writehrmstr1section(parm)
     desc += writehrmbnd1section(parm)
-    desc += writetorsionsection(parm)
+    desc += writetorsionsection(parm, improper)
     desc += writevdwsection(parm)
     logging.info(f"Opening file {outputfile} for output ...")
     with open(outputfile, "w") as f:
@@ -402,6 +404,11 @@ flags.DEFINE_string(
     "File name of the output gjf file. Default is newinput.gjf.",
     short_name="o",
 )
+flags.DEFINE_boolean(
+    "improper",
+    False,
+    "Write whether improper torsions are included in the output gjf file. Default is False.",
+)
 flags.DEFINE_string(
     "mem",
     "60GB",
@@ -428,9 +435,10 @@ def main(argv):
     resid = FLAGS.resid
     near = FLAGS.near
     outputfile = FLAGS.outputfile
+    improper = FLAGS.improper
     mem = FLAGS.mem
     nproc = FLAGS.nproc
-    writegjffile(parmfile, rst7file, resid, near, outputfile, mem, nproc)
+    writegjffile(parmfile, rst7file, resid, near, outputfile, improper, mem, nproc)
 
 
 if __name__ == "__main__":
