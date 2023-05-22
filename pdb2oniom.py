@@ -244,10 +244,331 @@ def get_unique_list(seq):
     return non_dep_dihedlist
 
 
+def writeff14sbtorsions() -> str:
+    """Write ff14SB torsion section preset"""
+    torsions: str = """AmbTrs *   C   C   *     0 180   0   0  0.000 14.50   0.000  0.000 4.0
+AmbTrs *   C   CA  *     0 180   0   0  0.000 14.50   0.000  0.000 4.0
+AmbTrs *   C   CB  *     0 180   0   0  0.000 12.00   0.000  0.000 4.0
+AmbTrs *   C   CM  *     0 180   0   0  0.000  8.70   0.000  0.000 4.0
+AmbTrs *   C   CS  *     0 180   0   0  0.000  8.70   0.000  0.000 4.0
+AmbTrs *   C   CT  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   C   CX  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   C   N   *     0 180   0   0  0.000 10.00   0.000  0.000 4.0
+AmbTrs *   C   N*  *     0 180   0   0  0.000  5.80   0.000  0.000 4.0
+AmbTrs *   C   NA  *     0 180   0   0  0.000  5.40   0.000  0.000 4.0
+AmbTrs *   C   NC  *     0 180   0   0  0.000  8.00   0.000  0.000 2.0
+AmbTrs *   C   O   *     0 180   0   0  0.000 11.20   0.000  0.000 4.0
+AmbTrs *   C   OH  *     0 180   0   0  0.000  4.60   0.000  0.000 2.0
+AmbTrs *   C   OS  *     0 180   0   0  0.000  5.40   0.000  0.000 2.0
+AmbTrs *   CA  CA  *     0 180   0   0  0.000 14.50   0.000  0.000 4.0
+AmbTrs *   CA  CB  *     0 180   0   0  0.000 14.00   0.000  0.000 4.0
+AmbTrs *   CA  CM  *     0 180   0   0  0.000 10.20   0.000  0.000 4.0
+AmbTrs *   CA  CS  *     0 180   0   0  0.000 10.20   0.000  0.000 4.0
+AmbTrs *   CA  CN  *     0 180   0   0  0.000 14.50   0.000  0.000 4.0
+AmbTrs *   CA  CT  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CA  N2  *     0 180   0   0  0.000  9.60   0.000  0.000 4.0
+AmbTrs *   CA  NA  *     0 180   0   0  0.000  6.00   0.000  0.000 4.0
+AmbTrs *   CA  NC  *     0 180   0   0  0.000  9.60   0.000  0.000 2.0
+AmbTrs *   CA  OH  *     0 180   0   0  0.000  1.80   0.000  0.000 2.0
+AmbTrs *   CB  CB  *     0 180   0   0  0.000 21.80   0.000  0.000 4.0
+AmbTrs *   CB  CN  *     0 180   0   0  0.000 12.00   0.000  0.000 4.0
+AmbTrs *   CB  N*  *     0 180   0   0  0.000  6.60   0.000  0.000 4.0
+AmbTrs *   CB  NB  *     0 180   0   0  0.000  5.10   0.000  0.000 2.0
+AmbTrs *   CB  NC  *     0 180   0   0  0.000  8.30   0.000  0.000 2.0
+AmbTrs *   CC  CT  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CC  CV  *     0 180   0   0  0.000 20.60   0.000  0.000 4.0
+AmbTrs *   CC  CW  *     0 180   0   0  0.000 21.50   0.000  0.000 4.0
+AmbTrs *   CC  NA  *     0 180   0   0  0.000  5.60   0.000  0.000 4.0
+AmbTrs *   CC  NB  *     0 180   0   0  0.000  4.80   0.000  0.000 2.0
+AmbTrs *   CD  CD  *     0 180   0   0  0.000  4.00   0.000  0.000 4.0
+AmbTrs *   CD  CT  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CD  CM  *     0 180   0   0  0.000 26.60   0.000  0.000 4.0
+AmbTrs *   CD  CS  *     0 180   0   0  0.000 26.60   0.000  0.000 4.0
+AmbTrs *   CK  N*  *     0 180   0   0  0.000  6.80   0.000  0.000 4.0
+AmbTrs *   CK  NB  *     0 180   0   0  0.000 20.00   0.000  0.000 2.0
+AmbTrs *   CP  N*  *     0 180   0   0  0.000  6.80   0.000  0.000 4.0
+AmbTrs *   CP  NB  *     0 180   0   0  0.000 20.00   0.000  0.000 2.0
+AmbTrs *   CM  CM  *     0 180   0   0  0.000 26.60   0.000  0.000 4.0
+AmbTrs *   CM  CT  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CM  N*  *     0 180   0   0  0.000  7.40   0.000  0.000 4.0
+AmbTrs *   CM  OS  *     0 180   0   0  0.000  2.10   0.000  0.000 2.0
+AmbTrs *   CS  CS  *     0 180   0   0  0.000 26.60   0.000  0.000 4.0
+AmbTrs *   CS  CT  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CS  N*  *     0 180   0   0  0.000  7.40   0.000  0.000 4.0
+AmbTrs *   CS  OS  *     0 180   0   0  0.000  2.10   0.000  0.000 2.0
+AmbTrs *   CN  NA  *     0 180   0   0  0.000  6.10   0.000  0.000 4.0
+AmbTrs *   CQ  NC  *     0 180   0   0  0.000 13.60   0.000  0.000 2.0
+AmbTrs *   CT  CT  *     0   0   0   0  0.000  0.000  1.40   0.000 9.0
+AmbTrs *   CT  CX  *     0   0   0   0  0.000  0.000  1.40   0.000 9.0
+AmbTrs *   CT  CY  *     0   0   0   0  0.000  0.00   0.000  0.000 3.0
+AmbTrs *   CT  CZ  *     0   0   0   0  0.000  0.00   0.000  0.000 3.0
+AmbTrs *   CT  N   *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CX  N   *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CT  N*  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CT  N2  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   CT  NT  *     0   0   0   0  0.000  0.000  1.80   0.000 6.0
+AmbTrs *   CT  N3  *     0   0   0   0  0.000  0.000  1.40   0.000 9.0
+AmbTrs *   CX  N3  *     0   0   0   0  0.000  0.000  1.40   0.000 9.0
+AmbTrs *   CT  OH  *     0   0   0   0  0.000  0.000  0.50   0.000 3.0
+AmbTrs *   CT  OS  *     0   0   0   0  0.000  0.000  1.15   0.000 3.0
+AmbTrs *   CT  S   *     0   0   0   0  0.000  0.000  1.00   0.000 3.0
+AmbTrs *   CT  SH  *     0   0   0   0  0.000  0.000  0.75   0.000 3.0
+AmbTrs *   C*  CB  *     0 180   0   0  0.000  6.70   0.000  0.000 4.0
+AmbTrs *   C*  CT  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   C*  CW  *     0 180   0   0  0.000 26.10   0.000  0.000 4.0
+AmbTrs *   CR  NA  *     0 180   0   0  0.000  9.30   0.000  0.000 4.0
+AmbTrs *   CR  NB  *     0 180   0   0  0.000 10.00   0.000  0.000 2.0
+AmbTrs *   CV  NB  *     0 180   0   0  0.000  4.80   0.000  0.000 2.0
+AmbTrs *   CW  NA  *     0 180   0   0  0.000  6.00   0.000  0.000 4.0
+AmbTrs *   OH  P   *     0   0   0   0  0.000  0.000  0.75   0.000 3.0
+AmbTrs *   OS  P   *     0   0   0   0  0.000  0.000  0.75   0.000 3.0
+AmbTrs *   CI  OS  *     0   0   0   0  0.000  0.000  1.150  0.000 3.0
+AmbTrs *   CI  OH  *     0   0   0   0  0.000  0.000  0.500  0.000 3.0
+AmbTrs *   CI  CT  *     0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs *   C5  N*  *     0 180   0   0  0.000  6.80   0.000  0.000 4.0
+AmbTrs *   C5  NB  *     0 180   0   0  0.000 20.00   0.000  0.000 2.0
+AmbTrs *   C   C4  *     0 180   0   0  0.000  8.70   0.000  0.000 4.0
+AmbTrs *   CA  C4  *     0 180   0   0  0.000 10.20   0.000  0.000 4.0
+AmbTrs *   C4  C4  *     0 180   0   0  0.000 26.60   0.000  0.000 4.0
+AmbTrs *   C4  CT  *     0   0   0   0  0.000  0.00   0.000  0.000 6.0
+AmbTrs *   C4  N*  *     0 180   0   0  0.000  7.40   0.000  0.000 4.0
+AmbTrs *   C8  C8  *     0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs *   C8  CX  *     0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs *   C8  N2  *     0   0   0   0  0.000  0.000  0.000  0.000 6.0
+AmbTrs *   C8  N3  *     0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs *   CA  C2C *     0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs *   CX  C2C *     0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs *   CX  C3C *     0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs *   S   C2C *     0   0   0   0  0.000  0.000  1.000  0.000 3.0
+AmbTrs *   SH  C2C *     0   0   0   0  0.000  0.000  0.750  0.000 3.0
+AmbTrs *   C2C C2C *     0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs C   N   CX  C     0   0   0   0  0.000  0.27   0.420  0.000 1.0
+AmbTrs N   CX  C   N   180 180 180   0  0.450  1.58   0.550  0.000 1.0
+AmbTrs CT  CT  N   C     0   0   0   0  2.000  2.00   0.400  0.000 1.0
+AmbTrs CT  CT  C   N     0   0   0   0  0.200  0.20   0.400  0.000 1.0
+AmbTrs CX  CT  C   N     0   0   0   0  0.200  0.20   0.400  0.000 1.0
+AmbTrs H   N   C   O     0 180   0   0  2.000  2.50   0.000  0.000 1.0
+AmbTrs CT  S   S   CT    0   0   0   0  0.000  3.50   0.600  0.000 1.0
+AmbTrs H1  CT  C   O     0   0 180   0  0.800  0.00   0.080  0.000 1.0
+AmbTrs H1  CX  C   O     0   0 180   0  0.800  0.00   0.080  0.000 1.0
+AmbTrs HC  CT  C   O     0   0 180   0  0.800  0.00   0.080  0.000 1.0
+AmbTrs HC  CT  CT  HC    0   0   0   0  0.000  0.000  0.15   0.000 1.0
+AmbTrs HC  CT  CT  CT    0   0   0   0  0.000  0.000  0.16   0.000 1.0
+AmbTrs HC  CT  CT  CX    0   0   0   0  0.000  0.000  0.16   0.000 1.0
+AmbTrs HC  CT  CM  CM    0   0 180   0  1.150  0.000  0.38   0.000 1.0
+AmbTrs HO  OH  CT  CT    0   0   0   0  0.250  0.00   0.160  0.000 1.0
+AmbTrs HO  OH  CT  CX    0   0   0   0  0.250  0.00   0.160  0.000 1.0
+AmbTrs HO  OH  C   O     0 180   0   0  1.900  2.30   0.000  0.000 1.0
+AmbTrs CT  CT  CT  CT  180 180   0   0  0.200  0.25   0.180  0.000 1.0
+AmbTrs CX  CT  CT  CT  180 180   0   0  0.200  0.25   0.180  0.000 1.0
+AmbTrs CT  CT  NT  CT    0 180   0   0  0.000  0.48   0.300  0.000 1.0
+AmbTrs OH  CT  CT  OH    0   0   0   0  0.000  1.175  0.144  0.000 1.0
+AmbTrs H1  CT  CT  OH    0   0   0   0  0.250  0.00   0.000  0.000 1.0
+AmbTrs H1  CX  CT  OH    0   0   0   0  0.250  0.00   0.000  0.000 1.0
+AmbTrs HC  CT  CT  OH    0   0   0   0  0.250  0.00   0.000  0.000 1.0
+AmbTrs N   CT  CT  OH    0   0   0   0  0.000  1.490  0.156  0.000 1.0
+AmbTrs C8  CX  N   C     0   0   0   0  2.000  1.800  0.800  0.000 1.0
+AmbTrs CT  CX  N   C     0   0   0   0  2.000  1.800  0.800  0.000 1.0
+AmbTrs C2C CX  N   C     0   0   0   0  2.000  1.800  0.800  0.000 1.0
+AmbTrs C3C CX  N   C     0   0   0   0  2.000  1.800  0.800  0.000 1.0
+AmbTrs N   C   CX  C8    0   0   0   0  0.200  0.200  0.400  0.000 1.0
+AmbTrs N   C   CX  CT    0   0   0   0  0.200  0.200  0.400  0.000 1.0
+AmbTrs N   C   CX  C2C   0   0   0   0  0.200  0.200  0.400  0.000 1.0
+AmbTrs N   C   CX  C3C   0   0   0   0  0.200  0.200  0.400  0.000 1.0
+AmbTrs N   C   C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs O   C   C2C HC    0   0 180   0  0.800  0.000  0.800  0.000 1.0
+AmbTrs OH  C   C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs CB  C*  C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs CW  C*  C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs C8  C8  C8  HC    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs CX  C8  C8  HC    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  C8  C8  HC    0   0   0   0  0.000  0.000  0.150  0.000 1.0
+AmbTrs C2C CC  CV  H4    0 180   0   0  0.000  5.150  0.000  0.000 1.0
+AmbTrs C2C CC  CV  NB    0 180   0   0  0.000  5.150  0.000  0.000 1.0
+AmbTrs C2C CC  CW  H4    0 180   0   0  0.000  5.375  0.000  0.000 1.0
+AmbTrs C2C CC  CW  NA    0 180   0   0  0.000  5.375  0.000  0.000 1.0
+AmbTrs C2C CC  NA  CR    0 180   0   0  0.000  1.400  0.000  0.000 1.0
+AmbTrs C2C CC  NA  H     0 180   0   0  0.000  1.400  0.000  0.000 1.0
+AmbTrs C2C CC  NB  CR    0 180   0   0  0.000  2.400  0.000  0.000 1.0
+AmbTrs CV  CC  C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs CW  CC  C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs NA  CC  C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs NB  CC  C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs O2  CO  C2C HC    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs H1  CT  S   C2C   0   0   0   0  0.000  0.000  1.000  0.000 3.0
+AmbTrs HC  CT  C2C HC    0   0   0   0  0.000  0.000  0.150  0.000 1.0
+AmbTrs HC  CT  C2C C3C   0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  CT  C3C CT    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  CT  C3C CX    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  CT  C3C H1    0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs HC  CT  C3C HC    0   0   0   0  0.000  0.000  0.150  0.000 1.0
+AmbTrs HC  CT  C3C C2C   0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  CT  C3C OH    0   0   0   0  0.250  0.000  0.000  0.000 1.0
+AmbTrs H1  CX  C2C OH    0   0   0   0  0.250  0.000  0.000  0.000 1.0
+AmbTrs H1  CX  C3C OH    0   0   0   0  0.250  0.000  0.000  0.000 1.0
+AmbTrs HO  OH  C2C H1    0   0   0   0  0.000  0.000  0.500  0.000 3.0
+AmbTrs HO  OH  C3C H1    0   0   0   0  0.000  0.000  0.500  0.000 3.0
+AmbTrs EP  S   S   C2C   0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs CX  C2C C2C HC    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  C2C C2C HC    0   0   0   0  0.000  0.000  0.150  0.000 1.0
+AmbTrs CT  C2C C3C HC    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs CX  C2C C3C HC    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  C2C C3C CT    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  C2C C3C CX    0   0   0   0  0.000  0.000  0.160  0.000 1.0
+AmbTrs HC  C2C C3C HC    0   0   0   0  0.000  0.000  0.150  0.000 1.0
+AmbTrs C   CX  C8  C8    0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs N   CX  C8  C8    0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs N3  CX  C8  C8    0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs CX  C8  C8  C8  180 180   0   0  0.200  0.250  0.180  0.000 1.0
+AmbTrs C8  C8  C8  N2    0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs C8  C8  N2  CA    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs C8  C8  C8  C8  180 180   0   0  0.200  0.250  0.180  0.000 1.0
+AmbTrs C8  C8  C8  N3    0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs C8  N2  CA  N2    0 180   0   0  0.000  2.400  0.000  0.000 1.0
+AmbTrs H   N2  CA  N2    0 180   0   0  0.000  2.400  0.000  0.000 1.0
+AmbTrs C8  C8  N3  H     0   0   0   0  0.000  0.000  1.400  0.000 9.0
+AmbTrs C   CX  C2C SH  180 180   0   0  0.269  0.337  0.251  0.075 1.0
+AmbTrs N   CX  C2C SH    0 180   0   0  0.154  0.486  0.251  0.033 1.0
+AmbTrs N3  CX  C2C SH    0 180   0   0  0.154  0.486  0.251  0.033 1.0
+AmbTrs CX  C2C SH  HS    0   0   0   0  0.092  0.612  0.252  0.030 1.0
+AmbTrs C   CX  C2C CO    0 180   0   0  0.424  0.459  0.058  0.154 1.0
+AmbTrs N   CX  C2C CO  180 180   0   0  2.154  0.647  0.058  0.089 1.0
+AmbTrs N3  CX  C2C CO  180 180   0   0  2.154  0.647  0.058  0.089 1.0
+AmbTrs CX  C2C CO  O2    0 180   0 180  0.000  0.769  0.000  0.031 1.0
+AmbTrs C   CX  C2C C     0 180   0   0  1.046  0.303  0.033  0.107 1.0
+AmbTrs N   CX  C2C C   180 180   0   0  0.688  0.297  0.033  0.059 1.0
+AmbTrs N3  CX  C2C C   180 180   0   0  0.688  0.297  0.033  0.059 1.0
+AmbTrs CX  C2C C   O     0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs CX  C2C C   OH  180 180   0 180  1.199  0.575  0.008  0.199 1.0
+AmbTrs C2C C   OH  HO  180 180   0   0  0.448  2.706  0.479  0.113 1.0
+AmbTrs CX  C2C C   N   180 180 180   0  0.828  0.485  0.301  0.008 1.0
+AmbTrs C   CX  CT  CC  180 180   0   0  0.143  0.244  0.219  0.025 1.0
+AmbTrs N   CX  CT  CC  180 180   0   0  0.306  0.221  0.219  0.089 1.0
+AmbTrs N3  CX  CT  CC  180 180   0   0  0.306  0.221  0.219  0.089 1.0
+AmbTrs CX  CT  CC  NA  180 180   0 180  0.160  0.392  0.686  0.037 1.0
+AmbTrs CX  CT  CC  CV  180   0 180 180  0.674  0.750  0.122  0.010 1.0
+AmbTrs CX  CT  CC  NB    0   0   0 180  0.690  0.204  0.740  0.047 1.0
+AmbTrs C   CX  C3C CT  180 180   0   0  0.406  0.289  0.148  0.112 1.0
+AmbTrs C   CX  C3C C2C   0 180   0   0  0.162  0.735  0.113  0.115 1.0
+AmbTrs N   CX  C3C CT    0 180   0 180  0.337  0.216  0.148  0.001 1.0
+AmbTrs N   CX  C3C C2C   0 180   0 180  0.310  0.144  0.113  0.097 1.0
+AmbTrs N3  CX  C3C CT    0 180   0 180  0.337  0.216  0.148  0.001 1.0
+AmbTrs N3  CX  C3C C2C   0 180   0 180  0.310  0.144  0.113  0.097 1.0
+AmbTrs CX  C3C C2C CT    0   0   0   0  0.447  0.053  0.107  0.230 1.0
+AmbTrs CT  C3C C2C CT    0 180   0   0  0.202  0.077  0.107  0.224 1.0
+AmbTrs C   CX  C3C OH  180 180   0   0  0.697  0.119  0.315  0.156 1.0
+AmbTrs N   CX  C3C OH    0   0   0   0  0.674  0.006  0.315  0.095 1.0
+AmbTrs N3  CX  C3C OH    0   0   0   0  0.674  0.006  0.315  0.095 1.0
+AmbTrs CX  C3C OH  HO  180   0   0   0  0.006  0.251  0.236  0.013 1.0
+AmbTrs CT  C3C OH  HO    0 180   0   0  0.643  0.079  0.236  0.048 1.0
+AmbTrs C   CX  C2C C3C   0 180   0   0  0.706  0.620  0.144  0.190 1.0
+AmbTrs N   CX  C2C C3C   0 180   0   0  0.098  0.259  0.144  0.073 1.0
+AmbTrs N3  CX  C2C C3C   0 180   0   0  0.098  0.259  0.144  0.073 1.0
+AmbTrs CX  C2C C3C CT    0 180   0   0  0.379  0.027  0.142  0.179 1.0
+AmbTrs C   CX  C2C OH  180 180   0   0  0.661  0.218  0.401  0.129 1.0
+AmbTrs N   CX  C2C OH    0 180   0   0  0.666  0.246  0.401  0.160 1.0
+AmbTrs N3  CX  C2C OH    0 180   0   0  0.666  0.246  0.401  0.160 1.0
+AmbTrs CX  C2C OH  HO    0   0   0   0  0.211  0.444  0.267  0.007 1.0
+AmbTrs C   CX  CT  C*  180 180   0   0  0.017  0.353  0.234  0.074 1.0
+AmbTrs N   CX  CT  C*    0 180   0   0  0.079  0.313  0.234  0.031 1.0
+AmbTrs N3  CX  CT  C*    0 180   0   0  0.079  0.313  0.234  0.031 1.0
+AmbTrs CX  CT  C*  CB    0   0   0 180  0.365  0.408  0.819  0.095 1.0
+AmbTrs CX  CT  C*  CW    0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs C   CX  CT  CA    0 180   0 180  0.055  0.469  0.192  0.012 1.0
+AmbTrs N   CX  CT  CA  180 180   0 180  0.012  0.290  0.192  0.007 1.0
+AmbTrs N3  CX  CT  CA  180 180   0 180  0.012  0.290  0.192  0.007 1.0
+AmbTrs CX  CT  CA  CA    0 180   0 180  0.000  0.069  0.000  0.048 1.0
+AmbTrs CA  C   OH  HO    0 180   0   0  0.000  0.883  0.000  0.065 1.0
+AmbTrs C   CX  C2C C2C 180 180   0   0  0.421  0.393  0.144  0.145 1.0
+AmbTrs N   CX  C2C C2C 180 180   0   0  0.100  0.184  0.144  0.078 1.0
+AmbTrs N3  CX  C2C C2C 180 180   0   0  0.100  0.184  0.144  0.078 1.0
+AmbTrs CX  C2C C2C C   180   0 180   0  0.196  0.083  0.412  0.138 1.0
+AmbTrs C2C C2C C   O     0   0   0   0  0.000  0.000  0.000  0.000 1.0
+AmbTrs C2C C2C C   OH  180 180 180 180  0.824  1.104  0.025  0.066 1.0
+AmbTrs C2C C2C C   N   180 180 180   0  0.609  0.845  0.085  0.042 1.0
+AmbTrs CX  C2C C2C CO  180 180 180 180  1.367  0.222  0.608  0.056 1.0
+AmbTrs C2C C2C CO  O2    0 180   0   0  0.000  0.390  0.000  0.064 1.0
+AmbTrs CX  C2C C2C S     0   0   0   0  0.417  0.245  0.016  0.028 1.0
+AmbTrs C2C C2C S   CT  180   0   0   0  0.247  0.442  0.414  0.057 1.0
+AmbTrs C   CX  C2C S     0 180   0   0  0.602  0.394  0.323  0.278 1.0
+AmbTrs N   CX  C2C S     0 180   0   0  0.469  0.021  0.323  0.064 1.0
+AmbTrs N3  CX  C2C S     0 180   0   0  0.469  0.021  0.323  0.064 1.0
+AmbTrs CX  C2C S   S     0   0   0 180  0.056  0.666  0.302  0.135 1.0
+AmbTrs C2C S   S   C2C   0   0   0   0  0.420  4.480  0.682  0.379 1.0
+ImpTrs *   *   C   O           10.5         180.0          2.0
+ImpTrs *   O2  C   O2          10.5         180.0          2.0
+ImpTrs *   *   N   H           1.0          180.0          2.0
+ImpTrs *   *   N2  H           1.0          180.0          2.0
+ImpTrs *   *   NA  H           1.0          180.0          2.0
+ImpTrs *   N2  CA  N2          10.5         180.0          2.0
+ImpTrs *   CT  N   CT          1.0          180.0          2.0
+ImpTrs *   CT  N   CX          1.0          180.0          2.0
+ImpTrs *   *   CA  HA          1.1          180.0          2.0
+ImpTrs *   *   CW  H4          1.1          180.0          2.0
+ImpTrs *   *   CR  H5          1.1          180.0          2.0
+ImpTrs *   *   CV  H4          1.1          180.0          2.0
+ImpTrs *   *   CQ  H5          1.1          180.0          2.0
+ImpTrs *   *   CK  H5          1.1          180.0          2.0
+ImpTrs *   *   CP  H5          1.1          180.0          2.0
+ImpTrs *   *   CM  H4          1.1          180.0          2.0
+ImpTrs *   *   CM  HA          1.1          180.0          2.0
+ImpTrs *   *   CS  H4          1.1          180.0          2.0
+ImpTrs *   *   CS  HA          1.1          180.0          2.0
+ImpTrs *   *   CA  H4          1.1          180.0          2.0
+ImpTrs *   *   CA  H5          1.1          180.0          2.0
+ImpTrs *   *   C5  H5          1.1          180.0          2.0
+ImpTrs *   *   C4  H4          1.1          180.0          2.0
+ImpTrs *   *   C4  HA          1.1          180.0          2.0
+ImpTrs *   O2  CO  O2         10.5          180.0          2.0
+ImpTrs CB  CK  N*  CT          1.0          180.0          2.0
+ImpTrs CB  CP  N*  CT          1.0          180.0          2.0
+ImpTrs C   CM  N*  CT          1.0          180.0          2.0
+ImpTrs C   CS  N*  CT          1.0          180.0          2.0
+ImpTrs C   CS  CM  CT          1.1          180.0          2.0
+ImpTrs CT  O   C   OH          10.5         180.0          2.0
+ImpTrs CT  CV  CC  NA          1.1          180.0          2.0
+ImpTrs CT  CW  CC  NB          1.1          180.0          2.0
+ImpTrs CT  CW  CC  NA          1.1          180.0          2.0
+ImpTrs CB  CT  C*  CW          1.1          180.0          2.0
+ImpTrs CA  CA  CA  CT          1.1          180.0          2.0
+ImpTrs C   CM  CM  CT          1.1          180.0          2.0
+ImpTrs C   CS  CS  CT          1.1          180.0          2.0
+ImpTrs CM  N2  CA  NC          1.1          180.0          2.0
+ImpTrs CS  N2  CA  NC          1.1          180.0          2.0
+ImpTrs CB  N2  CA  NC          1.1          180.0          2.0
+ImpTrs N2  NA  CA  NC          1.1          180.0          2.0
+ImpTrs CA  CA  C   OH          1.1          180.0          2.0
+ImpTrs CA  CA  CA  OH          1.1          180.0          2.0
+ImpTrs H5  O   C   OH          1.1          180.0          2.0
+ImpTrs H5  O   C   OS          1.1          180.0          2.0
+ImpTrs CM  CT  CM  HA          1.1          180.0          2.0
+ImpTrs CS  CT  CS  HA          1.1          180.0          2.0
+ImpTrs Br  CA  CA  CA          1.1          180.0          2.0
+ImpTrs CM  H4  C   O           1.1          180.0          2.0
+ImpTrs CS  H4  C   O           1.1          180.0          2.0
+ImpTrs C   CT  N   H           1.1          180.0          2.0
+ImpTrs C   CX  N   H           1.1          180.0          2.0
+ImpTrs C   CT  N   O           1.1          180.0          2.0
+ImpTrs CB  C5  N*  CT          1.0          180.0          2.0
+ImpTrs C   C4  N*  CT          1.0          180.0          2.0
+ImpTrs C   C4  C4  CT          1.1          180.0          2.0
+ImpTrs C4  N2  CA  NC          1.1          180.0          2.0
+ImpTrs CA  CA  C   OS          1.1          180.0          2.0
+ImpTrs CR  CC  NA  P           1.1          180.0          2.0
+ImpTrs C2C O   C   OH         10.5          180.0          2.0
+ImpTrs CA  CA  CA  C2C         1.1          180.0          2.0
+"""
+    return torsions
+
+
 def writetorsionsection(parm, improper):
     """Write dihedral sections: AmbTrs and ImpTrs
     dihed_list = [[('LC', 'LC', 'LN', 'LHN'), (180, '1.1000'), 2, True/False], [...], ]
     dihedrals.improper==False -> AmbTrs, True -> ImpTrs
+
+    # Since May 22, 2023
+    Note: Now preset AmbTrs and ImpTrs parameters derived from ff14SB are used for the dihedrals.
+    Torsion parameters written in parm file is not used.
     """
     torsioninfo = ""
     ambtrsinfo = []
@@ -270,6 +591,7 @@ def writetorsionsection(parm, improper):
     diheds_list = get_unique_list(diheds_list)
 
     for diheds in diheds_list:
+        # For AmbTrs
         if not diheds[3]:
             if diheds[0] not in [x[0] for x in ambtrsinfo]:
                 ambtrsinfo.append(
@@ -284,6 +606,7 @@ def writetorsionsection(parm, improper):
             num = ambtrsinfo1.index(diheds[0])
             ambtrsinfo[num][1][diheds[2] - 1] = diheds[1][0]
             ambtrsinfo[num][2][diheds[2] - 1] = diheds[1][1]
+        # For ImpTrs
         else:
             if diheds[0] not in [x[0] for x in improperinfo]:
                 improperinfo.append([diheds[0], 0.00, 0.000, 0.0])
@@ -294,15 +617,20 @@ def writetorsionsection(parm, improper):
             improperinfo[num][3] = diheds[2]
 
     for i in ambtrsinfo:
-        torsioninfo += (
-            f"AmbTrs  {i[0][0]:>3} {i[0][1]:>3} {i[0][2]:>3} {i[0][3]:>3} "
-            f"{i[1][0]:>4} {i[1][1]:>4} {i[1][2]:>4} {i[1][3]:>4}   "
-            f"{i[2][0]}  {i[2][1]}  {i[2][2]}  {i[2][3]}   1.0\n"
-        )
+        # もしi[0][:]のうちいずれかがLで始まればそれを書き出し、そうでなければ書き出さない
+        if i[0][0].startswith("L") or i[0][1].startswith("L") or i[0][2].startswith("L") or i[0][3].startswith("L"):
+            torsioninfo += (
+                f"AmbTrs  {i[0][0]:>3} {i[0][1]:>3} {i[0][2]:>3} {i[0][3]:>3} "
+                f"{i[1][0]:>4} {i[1][1]:>4} {i[1][2]:>4} {i[1][3]:>4}   "
+                f"{i[2][0]}  {i[2][1]}  {i[2][2]}  {i[2][3]}   1.0\n"
+            )
 
     if improper:
         for i in improperinfo:
-            torsioninfo += f"ImpTrs  {i[0][0]:>3} {i[0][1]:>3} {i[0][2]:>3} {i[0][3]:>3}   {i[1]:>8}   {i[2]:.01f}   {i[3]:.01f}\n"
+            if i[0][0].startswith("L") or i[0][1].startswith("L") or i[0][2].startswith("L") or i[0][3].startswith("L"):
+                torsioninfo += f"ImpTrs  {i[0][0]:>3} {i[0][1]:>3} {i[0][2]:>3} {i[0][3]:>3}   {i[1]:>8}   {i[2]:.01f}   {i[3]:.01f}\n"
+
+    torsioninfo += writeff14sbtorsions()
     return torsioninfo
 
 
@@ -341,7 +669,7 @@ def writegjffile(
     """main process"""
 
     logging.info(
-        "pdb2oniom.py ver.0.2; Amber parm and rst7 files to Gaussian ONIOM input file."
+        "pdb2oniom.py ver.0.3; Amber parm and rst7 files to Gaussian ONIOM input file."
     )
     parm = pmd.load_file(parmfile, xyz=rst7file)
     logging.info(f"Total charge of low layer is calculated {get_totalcharge(parm)}")
