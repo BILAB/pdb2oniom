@@ -1,4 +1,5 @@
 # pdb2oniom
+
 A python implementation of pdb2oniom for QM/MM (ONIOM) calculations.
 
 An alternative of `pdb2oniom` perl script originally developed at [TAO package](http://schlegelgroup.wayne.edu/Software/oniomtoolTAO/TAOtutorial.html). The feature to import force field parameters from an input parm7 file is inspired by the [CATs package](https://github.com/kulhanek/cats) and its `topcrd2mmcom` command.
@@ -10,10 +11,10 @@ An alternative of `pdb2oniom` perl script originally developed at [TAO package](
 
 ## Usage
 
-Requirement: [Abseil](https://github.com/abseil/abseil-py), [NumPy](https://www.numpy.org), [SciPy](https://scipy.org/), and [ParmEd](https://github.com/ParmEd/ParmEd). You don't need to install ParmEd if you have already installed [AmberTools](https://ambermd.org/AmberTools.php) on your machine.
+Requirement: [NumPy](https://www.numpy.org), [SciPy](https://scipy.org/), and [ParmEd](https://github.com/ParmEd/ParmEd). You don't need to install ParmEd if you have already installed [AmberTools](https://ambermd.org/AmberTools.php) on your machine.
 
 ```bash
-$ python3 -m pip install absl-py numpy scipy ParmEd
+python3 -m pip install absl-py numpy scipy ParmEd
 ```
 
 An example to run:

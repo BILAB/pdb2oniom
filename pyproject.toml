@@ -1,0 +1,44 @@
+[project]
+name = "pdb2oniom"
+version = "0.3.2"
+description = "python implementation of pdb2oniom for QM/MM (ONIOM) calculations."
+authors = [{ name = "YoshitakaMo", email = "virgospica93@gmail.com" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX',
+    'Operating System :: Unix',
+    'Operating System :: MacOS',
+]
+requires-python = ">=3.9"
+dependencies = ["numpy", "scipy", "parmed"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "black>=23.12.1",
+    "notebook>=7.0.6",
+    "pytest>=7.4.4",
+    "ipykernel>=6.28.0",
+    "ipython>=8.20.0",
+    "flake8>=7.0.0",
+    "mypy>=1.8.0",
+]
+
+[project.scripts]
+pdb2oniom_py = 'pdb2oniom.pdb2oniom:main'
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["pdb2oniom"]
