@@ -12,10 +12,17 @@ An alternative of `pdb2oniom` perl script originally developed at [TAO package](
 ## Installation
 
 ```bash
+# If you are using python3.12, create and activate venv at first.
+# "/path/to/workingdirectory" is your working directory.
+# mkdir -p /path/to/workingdirectory ; cd /path/to/workingdirectory
+# python3.12 -m venv ~/.venv
+# source .venv/bin/activate
+
+# Ubuntu 22.04 uses python3.10 by default. Use python3.12 if you have it instead of python3.10.
 # install from GitHub
-python3.11 -m pip install git+https://github.com/BILAB/pdb2oniom.git
+python3.10 -m pip install git+https://github.com/BILAB/pdb2oniom.git
 # upgrade
-python3.11 -m pip uninstall pdb2oniom -y && python3.11 -m pip install --upgrade git+https://github.com/BILAB/pdb2oniom.git
+python3.10 -m pip uninstall pdb2oniom -y && python3.10 -m pip install --upgrade git+https://github.com/BILAB/pdb2oniom.git
 ```
 
 ## Usage
@@ -23,7 +30,7 @@ python3.11 -m pip uninstall pdb2oniom -y && python3.11 -m pip install --upgrade 
 An example to run:
 
 ```bash
-$ pdb2oniom_py -p leap.parm7 -r leap.rst7 --resid corelist.txt -n 7
+$ pdb2oniom_py -p init.parm7 -r init.rst7 --resid corelist.txt -n 7
 
 2024-01-29 15:34:52,406 pdb2oniom.py:782 - INFO - pdb2oniom.py ver.0.3.2: Amber parm and rst7 files to Gaussian ONIOM input file.
 2024-01-29 15:34:53,456 pdb2oniom.py:691 - INFO - Total charge of low layer is calculated -18
