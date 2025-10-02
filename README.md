@@ -12,17 +12,17 @@ An alternative of `pdb2oniom` perl script originally developed at [TAO package](
 ## Installation
 
 ```bash
-# If you are using python3.12, create and activate venv at first.
+# If you are using python3.12 or higher (e.g. Ubuntu 24.04), create and activate venv at first.
 # "/path/to/workingdirectory" is your working directory.
-# mkdir -p /path/to/workingdirectory ; cd /path/to/workingdirectory
-# python3.12 -m venv ~/.venv
-# source .venv/bin/activate
+mkdir -p /path/to/workingdirectory ; cd /path/to/workingdirectory
+python3.12 -m venv .venv
+source .venv/bin/activate
+python3.12 -m pip install numpy==1.26.5 ParmEd==4.3.0
 
-# Ubuntu 22.04 uses python3.10 by default. Use python3.12 if you have it instead of python3.10.
 # install from GitHub
-python3.10 -m pip install git+https://github.com/BILAB/pdb2oniom.git
+python3.12 -m pip install git+https://github.com/BILAB/pdb2oniom.git
 # upgrade
-python3.10 -m pip uninstall pdb2oniom -y && python3.10 -m pip install --upgrade git+https://github.com/BILAB/pdb2oniom.git
+python3.12 -m pip uninstall pdb2oniom -y && python3.12 -m pip install --upgrade git+https://github.com/BILAB/pdb2oniom.git
 ```
 
 ## Usage
